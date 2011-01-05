@@ -1,9 +1,7 @@
 Polyveille::Application.routes.draw do
-  get "pages/home"
+  resources :articles
 
-  get "articles/show"
-
-  get "users/show"
+  root :to => 'pages#home'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
