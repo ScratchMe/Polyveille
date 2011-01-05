@@ -1,4 +1,6 @@
 Polyveille::Application.routes.draw do
+  get "pages/home"
+
   get "articles/show"
 
   get "users/show"
