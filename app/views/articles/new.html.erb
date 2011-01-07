@@ -1,0 +1,12 @@
+<h1>Entrer l'URL d'un article de blog</h1>
+
+<%= form_for(@article) do |f| %>
+  <div class="field">
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Valider" %>
+  </div>
+<% end %>
+<%= debug(params) if Rails.env.development? %>

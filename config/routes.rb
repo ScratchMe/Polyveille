@@ -1,6 +1,8 @@
 Polyveille::Application.routes.draw do
   resources :articles
 
+  match '/ajouterArticle',  :to => 'articles#new'
+
   root :to => 'pages#home'
 
   # The priority is based upon order of creation:
