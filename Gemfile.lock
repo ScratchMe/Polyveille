@@ -104,6 +104,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (= 2.2.2)
   annotate-models (= 1.0.4)
   postrank-api (= 0.2.0)
   rails (= 3.0.3)

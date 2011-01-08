@@ -1,5 +1,7 @@
 <h1>Entrer l'URL d'un article de blog</h1>
-
+<% flash.each do |key, value| %>
+  <div style="color: green;"><%= value %></div>
+<% end %>
 <%= form_for(@article) do |f| %>
   <div class="field">
     <%= f.label :url %><br />
