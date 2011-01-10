@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 gem 'postrank-api', '0.2.0'
+gem 'PageRankr'
 gem 'addressable', '2.2.2'
 
 # Bundle edge Rails instead:
