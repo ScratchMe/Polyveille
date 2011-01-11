@@ -19,10 +19,11 @@ class Article < ActiveRecord::Base
 
 	attr_accessible :url, :facebook, :twitter, :pagerank, :backlinks, :comments, :nbIndicateursPR
 
-  #url_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  url_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
-  validates :url,  :presence => true #,
-#                   :format	 => { :with => url_regex }
+  validates :url,  :presence => true,
+                   :format	 => { :with => url_regex },
+                   :uniqueness => true
   validates :facebook, :presence   => true
   validates :twitter, :presence   => true
   validates :pagerank, :presence   => true
