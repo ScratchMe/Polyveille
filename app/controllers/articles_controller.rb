@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
     
     facebookPluginContent = open("http://www.facebook.com/plugins/like.php?href=" + @article.url)
 		facebook = facebookPluginContent.string.match("(([0-9]\s?)*)\s(likes|personnes\saiment)") #parfois likes
-		unless facebook == nil
+		if facebook
 		  @article.facebook = facebook[1].delete("\s").to_i
 		else
 		  if facebookPluginContent.string.include?("One like") or facebookPluginContent.string.include?("Une personne aime")
