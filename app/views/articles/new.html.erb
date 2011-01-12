@@ -1,6 +1,10 @@
 <h1>Entrer l'URL d'un article de blog</h1>
 <% flash.each do |key, value| %>
-  <div style="color: green;"><%= value %></div>
+	<% if key == :success %>
+		<div style="color: green;"><%= value %></div>
+	<% else %>
+		<div style="color: red;"><%= value %></div>
+	<% end %>
 <% end %>
 <%= form_for(@article) do |f| %>
   <div class="field">
