@@ -10,10 +10,7 @@ class ArticlesController < ApplicationController
 
 
   def create
-    require 'postrank-api'
-    require 'page_rankr'
-    require 'open-uri'
-    require 'facebook-graph'
+    require 'Indicateurs'
     
     
     # Nombre d'article ajoutés à la BD
@@ -29,45 +26,23 @@ class ArticlesController < ApplicationController
 			unless @article.url.start_with?("http://", "https://")
 		    @article.url = "http://" + @article.url
 		  end
-			uri = Addressable::URI.parse(@article.url)
 		
+		
+		
+		  recuperateur = Indicateurs::Recuperateur.new(@article.url)
 		
 			# Détermination des indicateurs "backlinks" et "PageRank" :		    
-		  if(@article.backlinks = PageRankr.backlinks(uri.host, :google)[:google]).nil?
-		  	@article.backlinks = 0
-		  end
-
-		  @article.pagerank = PageRankr.ranks(uri.host, :google)[:google]
-		  if (@article.pagerank).nil? or (@article.pagerank == -1) 
-		  	@article.pagerank = 0
-		  end		
-		  
+		  @article.backlinks = recuperateur.backlinks
+		  @article.pagerank = recuperateur.pagerank
 		  
 		  # Détermination de l'indicateur FaceBook :
-		  client = FacebookGraph::Client.new
-		  resultat = client.get_node(@article.url)
-		  if resultat.properties[:shares].nil?
-		    @article.facebook = 0
-		  else
-		    @article.facebook = resultat.properties[:shares]
-		  end
-		
+		  @article.facebook = recuperateur.facebook
 		
 			# Détermination des indicateurs "comments" et "twitter" (API Post rank) :
-		
-		  # clef Post rank : db233481d596f23895813487370ed088
-		  api = PostRank::API.new('db233481d596f23895813487370ed088')
-		  metrics = api.metrics(@article.url)
-
-		  if (@article.twitter = metrics[@article.url]["twitter"]).nil?
-		  	@article.twitter = 0
-		  end
-		  if (@article.comments = metrics[@article.url]["comments"]).nil?
-		  	@article.comments = 0
-		  end
-		  if (@article.nbIndicateursPR = metrics[@article.url].length).nil?
-		  	@article.nbIndicateursPR = 0
-		  end
+		  @article.twitter = recuperateur.postrank("twitter")
+		  @article.comments = recuperateur.postrank("comments")
+		  @article.nbIndicateursPR = recuperateur.postrank_nb_indicateurs
+		  
 		  
 		  
 		  # Ajout des valeurs de chaque indicateurs dans la BD, redirection de l'utilisateur vers l'écran d'ajout de nouvelles URL et affichage d'informations sur le déroulement des opérations :
