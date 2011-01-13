@@ -13,6 +13,7 @@ class ArticlesController < ApplicationController
     require 'postrank-api'
     require 'page_rankr'
     require 'open-uri'
+    require 'facebook-graph'
     
     
     # Nombre d'article ajoutés à la BD
@@ -43,17 +44,13 @@ class ArticlesController < ApplicationController
 		  
 		  
 		  # Détermination de l'indicateur FaceBook :
-		  facebookPluginContent = open("http://www.facebook.com/plugins/like.php?href=" + @article.url)
-			facebook = facebookPluginContent.string.match("(([0-9]\s?)*)\s(likes|personnes\saiment)") #parfois likes
-			if facebook.nil?
-			  if facebookPluginContent.string.include?("One like") or facebookPluginContent.string.include?("Une personne aime")
-				  @article.facebook = 1
-				else
-				  @article.facebook = 0
-				end
-			else
-				@article.facebook = facebook[1].delete("\s").to_i
-			end	
+		  client = FacebookGraph::Client.new
+		  resultat = client.get_node(@article.url)
+		  if resultat.properties[:shares].nil?
+		    @article.facebook = 0
+		  else
+		    @article.facebook = resultat.properties[:shares]
+		  end
 		
 		
 			# Détermination des indicateurs "comments" et "twitter" (API Post rank) :

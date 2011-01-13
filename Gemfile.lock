@@ -45,8 +45,11 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
+    facebook-graph (0.1.2)
+      json_pure (>= 1.2.0)
     i18n (0.5.0)
     json (1.4.6)
+    json_pure (1.4.6)
     mail (2.2.13)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -111,6 +114,7 @@ DEPENDENCIES
   PageRankr
   addressable (= 2.2.2)
   annotate-models (= 1.0.4)
+  facebook-graph
   postrank-api (= 0.2.0)
   rails (= 3.0.3)
   rspec (= 2.3.0)

@@ -4,6 +4,7 @@ gem 'rails', '3.0.3'
 gem 'postrank-api', '0.2.0'
 gem 'PageRankr'
 gem 'addressable', '2.2.2'
+gem 'facebook-graph'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
