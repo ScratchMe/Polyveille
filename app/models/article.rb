@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110107094734
+# Schema version: 20110115171706
 #
 # Table name: articles
 #
@@ -13,6 +13,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  nbIndicateursPR :integer
+#  score           :integer
 #
 
 class Article < ActiveRecord::Base
@@ -21,8 +22,8 @@ class Article < ActiveRecord::Base
 
   url_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
-  validates :url,  :presence => true,
-                   :format	 => { :with => url_regex },
+  validates :url,  :presence 	 => true,
+                   :format		 => { :with => url_regex },
                    :uniqueness => true
   validates :facebook, :presence   => true
   validates :twitter, :presence   => true
@@ -30,6 +31,8 @@ class Article < ActiveRecord::Base
   validates :backlinks, :presence   => true
   validates :comments, :presence   => true
   validates :nbIndicateursPR, :presence   => true
+  validates :score, :presence   => true,
+  									:length			=> { :within => 0..6 }
   
 end
 
