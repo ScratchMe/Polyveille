@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110115171706
+# Schema version: 20110116160550
 #
 # Table name: articles
 #
@@ -13,7 +13,7 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  nbIndicateursPR :integer
-#  score           :integer
+#  score           :float
 #
 
 class Article < ActiveRecord::Base
@@ -32,6 +32,7 @@ class Article < ActiveRecord::Base
   validates :comments, :presence   => true
   validates :nbIndicateursPR, :presence   => true
   validates :score, :presence   => true
+							#			:inclusion	=> { :in => 0..6 }
   
 end
 

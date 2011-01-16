@@ -4,7 +4,8 @@ class ArticlesController < ApplicationController
   	@classement = {}
   	
   	Article.all.each do |article|
-			@classement[article.score] = article.url
+  		polyscore = (article.score * 1000).round
+			@classement[polyscore] = article.url
 		end
 		
 		@classement = @classement.sort.reverse
@@ -46,17 +47,19 @@ class ArticlesController < ApplicationController
 		  @article.facebook = recuperateur.facebook
 		
 			# Détermination des indicateurs "comments" et "twitter" (API Post rank) :
-		  @article.twitter = recuperateur.postrank("twitter")
-		  @article.comments = recuperateur.postrank("comments")
-		  @article.nbIndicateursPR = recuperateur.postrank_nb_indicateurs
+		  @article.twitter = recuperateur.twitter
+		  @article.comments = recuperateur.comments
+		  @article.nbIndicateursPR = recuperateur.nbIndicateursPR
 		  
-		  
+		  #Calcul du score
+		  calculateur = Indicateurs::CalculateurPolyScore.new(@article)
+		  @article.score = calculateur.polyscore
 		  
 		  # Ajout des valeurs de chaque indicateurs dans la BD, redirection de l'utilisateur vers l'écran d'ajout de nouvelles URL et affichage d'informations sur le déroulement des opérations :
 		  if @article.save
 		  	nbArticle = nbArticle + 1
 		  else
-		  	flash[@article.url] = "Une erreur est survenu lors de l'ajout de l'URL #{@article.url}."
+		  	flash[@article.url] = "Une erreur est survenue lors de l'ajout de l'URL #{@article.url}."
 		  end
 		end
 		

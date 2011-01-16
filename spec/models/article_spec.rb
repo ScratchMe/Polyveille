@@ -10,7 +10,8 @@ describe Article do
       :pagerank => 1,
       :backlinks => 1,
       :comments => 1,
-      :nbIndicateursPR => 1
+      :nbIndicateursPR => 1,
+      :score => 5
     }
   end
   
