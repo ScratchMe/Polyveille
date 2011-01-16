@@ -1,14 +1,17 @@
 class ArticlesController < ApplicationController
 
   def show
-  	@classement = {}
-  	
-  	Article.all.each do |article|
-  		polyscore = (article.score * 1000).round
-			@classement[polyscore] = article.url
+  	@articles = Article.all(:order => "score DESC").paginate(:page => params[:page] || 1, :per_page => 30)
+  	@articles.each do |article|
+  		article.score = (article.score * 1000).round
 		end
 		
-		@classement = @classement.sort.reverse
+		#Débutation de numérotation de la liste ol
+		if params[:page].nil?
+		  @start = 1
+		else
+		  @start = ((params[:page].to_i-1)*30)+1
+		end
   end
 
 
