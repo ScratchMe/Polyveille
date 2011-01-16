@@ -1,9 +1,7 @@
 <h1>Classement</h1>
 <p>Ceci est le classement des articles de blogs de notre base de données suivant leur qualité.</p>
 
-<ol>
-<% @classement.each do |key, value| %>
-	<li>Polyscore : <%= value %>, URL : <%= key %></li>
-<% end %>
+<ol start=<%= ((params[:page].to_i-1)*30)+1 %>>
+<%= render @articles %>
 </ol>
-
+<%= will_paginate %>
