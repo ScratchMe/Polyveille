@@ -43,13 +43,14 @@ class ArticlesController < ApplicationController
 		  @article.comments = recuperateur.postrank("comments")
 		  @article.nbIndicateursPR = recuperateur.postrank_nb_indicateurs
 		  
-		  
+		  calculateur = Indicateurs::CalculateurPolyScore.new(@article)
+		  @article.score = calculateur.polyscore
 		  
 		  # Ajout des valeurs de chaque indicateurs dans la BD, redirection de l'utilisateur vers l'écran d'ajout de nouvelles URL et affichage d'informations sur le déroulement des opérations :
 		  if @article.save
 		  	nbArticle = nbArticle + 1
 		  else
-		  	flash[@article.url] = "Une erreur est survenu lors de l'ajout de l'URL #{@article.url}."
+		  	flash[@article.url] = "Une erreur est survenue lors de l'ajout de l'URL #{@article.url}."
 		  end
 		end
 		
