@@ -39,10 +39,11 @@ class ArticlesController < ApplicationController
 		  @article.facebook = recuperateur.facebook
 		
 			# Détermination des indicateurs "comments" et "twitter" (API Post rank) :
-		  @article.twitter = recuperateur.postrank("twitter")
-		  @article.comments = recuperateur.postrank("comments")
-		  @article.nbIndicateursPR = recuperateur.postrank_nb_indicateurs
+		  @article.twitter = recuperateur.twitter
+		  @article.comments = recuperateur.comments
+		  @article.nbIndicateursPR = recuperateur.nbIndicateursPR
 		  
+		  #Calcul du score
 		  calculateur = Indicateurs::CalculateurPolyScore.new(@article)
 		  @article.score = calculateur.polyscore
 		  

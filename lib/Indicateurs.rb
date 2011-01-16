@@ -126,7 +126,7 @@ module Indicateurs
       return scoreFinal
     end
 
-    #private :scoreBacklinksAjuste, :scoreFacebook, :scoreTwitter, :scoreComments, :scoreNbIndicateursPR
+    private :scoreBacklinksAjuste, :scoreFacebook, :scoreTwitter, :scoreComments, :scoreNbIndicateursPR
   end
 
 
@@ -198,8 +198,16 @@ module Indicateurs
 	      return resultat
 	    end
 	  end
+	  
+	  def twitter
+	    postrank("twitter")
+	  end
+	  
+	  def comments
+	    postrank("comments")
+	  end
 	
-	  def postrank_nb_indicateurs
+	  def nbIndicateursPR
 	    if @metrics.nil?
 	      require 'postrank-api'
 	      
@@ -215,6 +223,8 @@ module Indicateurs
 	      return resultat
 	    end
 	  end
+	  
+	  private :postrank
   end
 end
 
