@@ -1,4 +1,7 @@
-<h1>Entrer l'URL d'un article de blog</h1>
+<h1>Ajouter des articles</h1>
+
+<p>Entrer l'URL d'un ou plusieurs articles de blog pour les ajouter dans la base de données. Les URL doivent être séparé par un point-virgule.</p>
+
 <% flash.each do |key, value| %>
 	<% if key == :success %>
 		<div style="color: green;"><%= value %></div>
@@ -8,11 +11,10 @@
 <% end %>
 <%= form_for(@article) do |f| %>
   <div class="field">
-    <%= f.label :url %><br />
+    <%= f.label :url %> : <br />
     <%= f.text_field :url %>
   </div>
   <div class="actions">
     <%= f.submit "Valider" %>
   </div>
 <% end %>
-<%= debug(params) if Rails.env.development? %>

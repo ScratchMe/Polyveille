@@ -1,6 +1,13 @@
 class ArticlesController < ApplicationController
 
   def show
+  	@classement = {}
+  	
+  	Article.all.each do |article|
+			@classement[article.score] = article.url
+		end
+		
+		@classement = @classement.sort.reverse
   end
 
 

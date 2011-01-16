@@ -18,7 +18,7 @@
 
 class Article < ActiveRecord::Base
 
-	attr_accessible :url, :facebook, :twitter, :pagerank, :backlinks, :comments, :nbIndicateursPR
+	attr_accessible :url, :facebook, :twitter, :pagerank, :backlinks, :comments, :nbIndicateursPR, :score
 
   url_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
@@ -31,8 +31,7 @@ class Article < ActiveRecord::Base
   validates :backlinks, :presence   => true
   validates :comments, :presence   => true
   validates :nbIndicateursPR, :presence   => true
-  validates :score, :presence   => true,
-  									:length			=> { :within => 0..6 }
+  validates :score, :presence   => true
   
 end
 

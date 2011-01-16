@@ -2,6 +2,7 @@ Polyveille::Application.routes.draw do
   resources :articles
 
   match '/ajouterArticle',  :to => 'articles#new'
+  match '/consulterClassement',  :to => 'articles#show'
 
   root :to => 'pages#home'
 

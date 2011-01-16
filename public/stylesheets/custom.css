@@ -1,0 +1,56 @@
+/* Mise en forme général */
+
+.container {
+  width: 710px;
+  margin: auto;
+}
+
+body {
+  background: #005187;
+}
+
+header {
+  padding-top: 20px;
+  padding: 1em;
+  background: #fff;
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+}
+
+section h1 {
+  font-size: 200%;
+  color: #005187;
+}
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+
+/* Boutons */
+
+a.ajouterArticle_button, a.consulterClassement_button {
+	display: block;
+  text-align: center;
+  color: #fff;
+  background: #009ee0;
+  font-size: 125%;
+  font-weight: bold;
+  padding: 20px;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
