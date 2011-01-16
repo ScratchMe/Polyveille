@@ -7,7 +7,11 @@ class ArticlesController < ApplicationController
 		end
 		
 		#Débutation de numérotation de la liste ol
-		@start = ((params[:page].to_i-1)*30)+1
+		if params[:page].nil?
+		  @start = 1
+		else
+		  @start = ((params[:page].to_i-1)*30)+1
+		end
   end
 
 
