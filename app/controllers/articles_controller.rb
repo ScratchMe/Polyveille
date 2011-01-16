@@ -3,12 +3,10 @@ class ArticlesController < ApplicationController
   def show
   	@classement = {}
   	
-  	Article.all.each do |article|
+  	Article.find(:all, :order => "score DESC").each do |article|
   		polyscore = (article.score * 1000).round
-			@classement[polyscore] = article.url
+			@classement[article.url] = polyscore
 		end
-		
-		@classement = @classement.sort.reverse
   end
 
 
