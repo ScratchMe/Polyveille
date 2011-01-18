@@ -1,1 +1,6 @@
-<li>Polyscore : <%= eval '%.0f' % article.score %>, URL : <a href="<%= article.url %>"><%= article.url %></a></li>
+<li>
+  <p class="round article">
+  <strong>Polyscore</strong> : <%= eval '%.0f' % article.score %><br />
+  <strong>URL</strong> : <a href="<%= article.url %>"><%= article.url %></a>
+  </p>
+</li>

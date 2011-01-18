@@ -49,6 +49,11 @@ a.ajouterArticle_button, a.consulterClassement_button {
 }
 
 
+.article {
+  background-color: #dddddd; 
+  padding : 5px;
+}
+
 
 
 
